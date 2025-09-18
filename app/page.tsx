@@ -1,15 +1,69 @@
 import Link from "next/link";
+import { Megaphone, CalendarDays, BookOpen, Trophy } from "lucide-react";
 import news from "@/data/news.json";
 import events from "@/data/events.json";
 import coursesData from "@/data/courses.json";
+import awards from "@/data/awards.json";
 
 export default function Page() {
-  const latestNews = news.slice(0, 3);
-  const upcoming = events.slice(0, 3);
+  const latestNews = news.slice(0, 4);
+  const upcoming = events.slice(0, 8);
   const topCourses = coursesData.slice(0, 3);
+  const featuredWinners = (awards[0]?.winners ?? []).slice(0, 6);
 
   return (
-    <div className="grid gap-8">
+    <div className="grid gap-10">
+      {/* Hero */}
+      <section className="rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-700 text-white p-8 md:p-12">
+        <div className="max-w-4xl">
+          <h1 className="text-3xl md:text-4xl font-semibold leading-tight">
+            高雄市建築師公會
+          </h1>
+          <p className="mt-3 text-neutral-200">
+            公告中心、活動與學習、專業資源與設計獎—以資料模型驅動的全新體驗。
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/news/" className="px-4 py-2 rounded-lg bg-white text-neutral-900 text-sm font-medium">
+              查看最新公告
+            </Link>
+            <Link href="/awards/" className="px-4 py-2 rounded-lg border border-white/40 text-sm">
+              仁和賞與歷屆得獎
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Three Entry Cards */}
+      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <EntryCard href="/news/" icon={<Megaphone className="h-5 w-5" />} title="公告中心" desc="法規、公文、招標、轉達與新聞彙整" />
+        <EntryCard href="/events/" icon={<CalendarDays className="h-5 w-5" />} title="活動與學習" desc="行事曆、報名與學分" />
+        <EntryCard href="/resources/" icon={<BookOpen className="h-5 w-5" />} title="專業資源" desc="主題知識、表單下載與範本" />
+      </section>
+
+      {/* Events scroller */}
+      <section className="grid gap-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold">近期活動</h2>
+          <div className="text-sm text-neutral-600">
+            iCal：<a className="underline" href="/events/ical.ics">/events/ical.ics</a>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <div className="flex gap-4 min-w-max pr-4">
+            {upcoming.map((e) => (
+              <div key={e.id} className="min-w-[260px] border rounded-xl p-4">
+                <div className="font-medium line-clamp-2">{e.title}</div>
+                <div className="text-xs text-neutral-600 mt-1">{new Date(e.start).toLocaleString("zh-TW")} @ {e.venue}</div>
+                {e.isCPD ? (
+                  <div className="text-xs mt-1">學分：{e.credits.hours} 小時 {e.credits.type}</div>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest news */}
       <section className="grid md:grid-cols-2 gap-6">
         <div className="card p-6">
           <h2 className="text-xl font-semibold mb-2">最新公告</h2>
@@ -27,37 +81,68 @@ export default function Page() {
             <Link href="/news/" className="underline">更多公告 →</Link>
           </div>
         </div>
+        {/* Courses */}
         <div className="card p-6">
-          <h2 className="text-xl font-semibold mb-2">近期活動</h2>
-          <ul className="space-y-3">
-            {upcoming.map((e) => (
-              <li key={e.id}>
-                <span className="font-medium">{e.title}</span>
-                <div className="text-xs text-neutral-500">{new Date(e.start).toLocaleString("zh-TW")} @ {e.venue}</div>
-              </li>
+          <div className="flex items-center gap-2 mb-2">
+            <Trophy className="h-4 w-4" />
+            <h2 className="text-xl font-semibold">線上課程 KAAU</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {topCourses.map((c) => (
+              <div key={c.id} className="border rounded-xl p-4">
+                <div className="font-medium">{c.title}</div>
+                <div className="text-xs text-neutral-500">{c.format} ・ {c.credits.hours} 小時 {c.credits.type}</div>
+              </div>
             ))}
-          </ul>
+          </div>
           <div className="mt-3">
-            <Link href="/events/" className="underline">查看活動 →</Link>
+            <Link href="/courses/" className="underline">全部課程 →</Link>
           </div>
         </div>
       </section>
 
-      <section className="card p-6">
-        <h2 className="text-xl font-semibold mb-4">線上課程 KAAU</h2>
+      {/* Featured awards */}
+      <section className="grid gap-4">
+        <div className="flex items-center gap-2">
+          <Trophy className="h-5 w-5" />
+          <h2 className="text-xl font-semibold">得獎作品精選</h2>
+        </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {topCourses.map((c) => (
-            <div key={c.id} className="border rounded-xl p-4">
-              <div className="font-medium">{c.title}</div>
-              <div className="text-xs text-neutral-500">{c.format} ・ {c.credits.hours} 小時 {c.credits.type}</div>
+          {featuredWinners.map((w: any, i: number) => (
+            <div key={i} className="border rounded-xl p-4">
+              <div className="font-medium line-clamp-2">{w.title}</div>
+              <div className="text-xs text-neutral-600">{w.team}（{w.category}）</div>
             </div>
           ))}
         </div>
-        <div className="mt-3">
-          <Link href="/courses/" className="underline">全部課程 →</Link>
+        <div>
+          <Link href="/awards/" className="underline text-sm">更多得獎作品 →</Link>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="grid gap-3">
+        <h2 className="text-xl font-semibold">合作與贊助</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="aspect-[3/1] rounded-lg border bg-neutral-50" />
+          ))}
         </div>
       </section>
     </div>
   );
 }
 
+function EntryCard({ href, icon, title, desc }: { href: string; icon: React.ReactNode; title: string; desc: string }) {
+  return (
+    <Link href={href} className="border rounded-2xl p-5 hover:shadow-sm transition">
+      <div className="flex items-start gap-3">
+        <div className="p-2 rounded-lg bg-neutral-100 text-neutral-700">{icon}</div>
+        <div>
+          <div className="font-medium">{title}</div>
+          <div className="text-sm text-neutral-600">{desc}</div>
+        </div>
+      </div>
+    </Link>
+  );
+}
