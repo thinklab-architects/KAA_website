@@ -164,15 +164,7 @@ export default function Page() {
         </div>
       </Section>
 
-      {/* 合作與贊助（logo 牆） */}
-      <Section className="grid gap-3">
-        <SectionHeading title="合作與贊助" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="aspect-[3/1] rounded-lg border bg-neutral-50" />
-          ))}
-        </div>
-      </Section>
+      {/* 合作與贊助區塊已移除 */}
     </div>
   );
 }
