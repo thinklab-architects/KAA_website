@@ -7,6 +7,15 @@
       { "title": "向海之屋", "team": "AA 建築師事務所", "category": "建築" },
       { "title": "林蔭之徑", "team": "BB 建築師事務所", "category": "景觀" }
     ]
+  },
+  {
+    "year": 2024,
+    "name": "仁和賞",
+    "categories": ["建築", "室內建築"],
+    "winners": [
+      { "title": "山城之光", "team": "CC 建築師事務所", "category": "建築" },
+      { "title": "木色居所", "team": "DD 建築師事務所", "category": "室內建築" }
+    ]
   }
 ]
 

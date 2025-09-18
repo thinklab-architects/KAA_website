@@ -22,6 +22,30 @@
         "mime": "application/pdf"
       }
     ]
+  },
+  {
+    "id": "2025-08-29-021",
+    "title": "公會公文：XX計畫協調會議通知",
+    "category": "公會公文",
+    "published_at": "2025-08-29",
+    "summary": "請相關單位出席協調會議，地點與議程詳見附件。",
+    "attachments": []
+  },
+  {
+    "id": "2025-09-01-051",
+    "title": "公文轉達：中央法規修正草案徵詢意見",
+    "category": "公文轉達",
+    "published_at": "2025-09-01",
+    "summary": "請會員於期限內提供意見，彙整後轉陳。",
+    "attachments": []
+  },
+  {
+    "id": "2025-09-03-101",
+    "title": "招標公告：XX局辦公室裝修案",
+    "category": "招標",
+    "published_at": "2025-09-03",
+    "summary": "開標日期與投標資格詳見招標文件。",
+    "attachments": []
   }
 ]
 
