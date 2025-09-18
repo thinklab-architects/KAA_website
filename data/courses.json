@@ -1,0 +1,13 @@
+[
+  {
+    "id": "course-001",
+    "title": "RC 結構設計入門",
+    "format": "on-demand",
+    "credits": { "hours": 2, "type": "CPD" },
+    "modules": [
+      { "title": "導論", "duration": "15:20" },
+      { "title": "設計重點", "duration": "34:12" }
+    ]
+  }
+]
+

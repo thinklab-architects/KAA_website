@@ -1,0 +1,27 @@
+[
+  {
+    "id": "2025-09-17-001",
+    "title": "公會公告：網站測試站上線",
+    "category": "公會公告",
+    "published_at": "2025-09-17",
+    "summary": "上線一版 KAA 測試站以供預覽，後續將逐步接上 CMS 與搜尋。",
+    "attachments": []
+  },
+  {
+    "id": "2025-09-01-011",
+    "title": "法規訊息：室內裝修申請書新版",
+    "category": "法規",
+    "published_at": "2025-09-01",
+    "summary": "自 2025-10-01 起適用之新版表單，請依規定使用。",
+    "attachments": [
+      {
+        "name": "室內裝修申請書v3.pdf",
+        "url": "/files/室內裝修申請書v3.pdf",
+        "version": "v3",
+        "effective_from": "2025-10-01",
+        "mime": "application/pdf"
+      }
+    ]
+  }
+]
+

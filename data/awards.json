@@ -1,0 +1,12 @@
+[
+  {
+    "year": 2025,
+    "name": "仁和賞",
+    "categories": ["建築", "室內建築", "景觀"],
+    "winners": [
+      { "title": "向海之屋", "team": "AA 建築師事務所", "category": "建築" },
+      { "title": "林蔭之徑", "team": "BB 建築師事務所", "category": "景觀" }
+    ]
+  }
+]
+

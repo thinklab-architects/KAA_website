@@ -1,10 +1,9 @@
-
 import "./globals.css";
 import Link from "next/link";
 
 export const metadata = {
   title: "高雄市建築師公會 KAA",
-  description: "KAA 測試站（參考 AIA 版型）：公告 / 活動與學習 / 設計獎 / 專業資源 / 會員",
+  description: "公告中心 / 活動與學習 / 設計獎 / 專業資源 / 會員與治理 / 關於",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,6 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/awards/">設計獎</Link>
               <Link href="/resources/">專業資源</Link>
               <Link href="/membership/">會員與治理</Link>
+              <Link href="/services/">服務</Link>
+              <Link href="/archive/">封存庫</Link>
               <Link href="/about/">關於</Link>
             </div>
           </nav>
@@ -28,10 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="container py-8">{children}</main>
         <footer className="mt-20 border-t">
           <div className="container py-10 text-sm text-neutral-600">
-            © {new Date().getFullYear()} 高雄市建築師公會．本測試站僅供內部評估
+            © {new Date().getFullYear()} 高雄市建築師公會 版權所有
           </div>
         </footer>
       </body>
     </html>
   );
 }
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>KAA 公告中心</title>
+    <link>https://thinklab-architects.github.io/KAA_website/news/</link>
+    <description>最新公告 / 法規 / 公文 / 轉達 / 招標</description>
+    <item>
+      <title><![CDATA[公會公告：網站測試站上線]]></title>
+      <link>https://thinklab-architects.github.io/KAA_website/news/2025-09-17-001/</link>
+      <guid isPermaLink="false">2025-09-17-001</guid>
+      <pubDate>Tue, 16 Sep 2025 16:00:00 GMT</pubDate>
+      <description><![CDATA[上線一版 KAA 測試站以供預覽，後續將逐步接上 CMS 與搜尋。]]></description>
+    </item>
+    <item>
+      <title><![CDATA[法規訊息：室內裝修申請書新版]]></title>
+      <link>https://thinklab-architects.github.io/KAA_website/news/2025-09-01-011/</link>
+      <guid isPermaLink="false">2025-09-01-011</guid>
+      <pubDate>Sun, 31 Aug 2025 16:00:00 GMT</pubDate>
+      <description><![CDATA[自 2025-10-01 起適用之新版表單，請依規定使用。]]></description>
+    </item>
+  </channel>
+</rss>
