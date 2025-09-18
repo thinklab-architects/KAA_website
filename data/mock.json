@@ -1,0 +1,84 @@
+{
+  "news": [
+    {
+      "id": "2025-09-17-001",
+      "title": "公會公告：網站重設測試上線",
+      "category": "公會公告",
+      "published_at": "2025-09-17",
+      "summary": "啟動新一代 KAA 官網設計測試站，邀請會員試用回饋。",
+      "attachments": []
+    },
+    {
+      "id": "2025-09-01-011",
+      "title": "法規訊息：室內裝修申請書版本更新",
+      "category": "法規",
+      "published_at": "2025-09-01",
+      "summary": "自 2025-10-01 起適用新版表單，舊版同時撤銷。",
+      "attachments": [
+        {
+          "name": "室內裝修申請書v3.pdf",
+          "url": "/files/室內裝修申請書v3.pdf"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-2025-10-12",
+      "title": "建築永續工作坊",
+      "start": "2025-10-12T09:00:00+08:00",
+      "end": "2025-10-12T17:00:00+08:00",
+      "venue": "KAA 會館",
+      "isCPD": true,
+      "credits": {
+        "hours": 6,
+        "type": "CPD"
+      },
+      "status": "open"
+    }
+  ],
+  "courses": [
+    {
+      "id": "course-001",
+      "title": "RC 耐震設計基礎",
+      "format": "on-demand",
+      "credits": {
+        "hours": 2,
+        "type": "CPD"
+      },
+      "modules": [
+        {
+          "title": "緒論",
+          "duration": "15:20"
+        },
+        {
+          "title": "設計要點",
+          "duration": "34:12"
+        }
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "year": 2025,
+      "name": "仁和賞",
+      "categories": [
+        "住宅",
+        "公共建築",
+        "室內"
+      ],
+      "winners": [
+        {
+          "title": "向海之屋",
+          "team": "AA 建築師事務所",
+          "category": "住宅"
+        },
+        {
+          "title": "山城之門",
+          "team": "BB 建築師事務所",
+          "category": "公共建築"
+        }
+      ]
+    }
+  ]
+}
