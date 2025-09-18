@@ -1,6 +1,10 @@
 import news from "@/data/news.json";
 import Link from "next/link";
 
+export function generateStaticParams() {
+  return news.map((n: any) => ({ id: n.id }));
+}
+
 export default function NewsDetail({ params }: { params: { id: string } }) {
   const item = news.find((n) => n.id === params.id);
   if (!item) return <div>找不到該則公告。</div>;
@@ -26,4 +30,3 @@ export default function NewsDetail({ params }: { params: { id: string } }) {
     </article>
   );
 }
-
