@@ -9,7 +9,18 @@
 }
 
 html { scroll-behavior: smooth; }
-body { @apply bg-white text-neutral-900 antialiased; }
+body { @apply bg-white text-neutral-900 antialiased font-sans; }
 .container { @apply mx-auto max-w-7xl px-4; }
 .card { @apply rounded-2xl shadow-sm border border-neutral-200 bg-white; }
 .kbd { @apply px-2 py-1 rounded-md border text-xs; }
+
+/* Section label (AIA-like) */
+.section-label { @apply inline-flex items-center gap-2 text-xs uppercase tracking-wide text-neutral-600; }
+.section-label::before { content: ""; @apply inline-block h-2 w-2 rounded-full bg-neutral-300; }
+
+/* CTA button variants */
+.k-cta-primary { @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black text-white text-sm font-medium; }
+.k-cta-secondary { @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-sm; }
+
+/* Hero media placeholder with dotted pattern */
+.hero-media { background-image: radial-gradient(#e5e7eb 1px, transparent 1px); background-size: 12px 12px; }

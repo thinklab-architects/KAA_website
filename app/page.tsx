@@ -20,16 +20,20 @@ export default function Page() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="grid gap-10">
-      {/* Hero */}
-      <section className="rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-700 text-white p-8 md:p-12">
-        <div className="max-w-4xl">
-          <h1 className="text-3xl md:text-4xl font-semibold leading-tight">高雄市建築師公會</h1>
-          <p className="mt-3 text-neutral-200">公告中心、活動與學習、專業資源與設計獎—以資料模型驅動的全新體驗。</p>
+    <div className="grid gap-12">
+      {/* Hero (AIA-inspired two-column) */}
+      <section className="grid md:grid-cols-12 gap-6 items-center">
+        <div className="md:col-span-5">
+          <div className="section-label mb-2">Resources</div>
+          <h1 className="text-3xl md:text-5xl font-semibold leading-tight">與 KAA 一起建立專業知識</h1>
+          <p className="mt-4 text-neutral-600">匯集公告、法規、活動與學習資源，讓會員在職涯每個階段都能快速取得所需。</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/news/" className="px-4 py-2 rounded-lg bg-white text-neutral-900 text-sm font-medium">查看最新公告</Link>
-            <Link href="/awards/" className="px-4 py-2 rounded-lg border border-white/40 text-sm">仁和賞與歷屆得獎</Link>
+            <Link href="/resources/" className="k-cta-primary">前往資源中心</Link>
+            <Link href="/membership/" className="k-cta-secondary">加入會員</Link>
           </div>
+        </div>
+        <div className="md:col-span-7">
+          <div className="hero-media rounded-2xl border aspect-[16/9] bg-white" />
         </div>
       </section>
 
@@ -145,4 +149,3 @@ function EntryCard({ href, icon, title, desc }: { href: string; icon: React.Reac
     </Link>
   );
 }
-

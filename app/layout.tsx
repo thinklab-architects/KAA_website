@@ -10,7 +10,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-Hant-TW">
       <body>
-        <header className="border-b bg-white">
+        <header className="bg-white">
+          <div className="border-b">
+            <div className="container py-2 text-xs flex items-center justify-end gap-5">
+              <Link href="#">MY ACCOUNT</Link>
+              <Link href="/membership/">BECOME A MEMBER</Link>
+              <Link href="/news/">SEARCH</Link>
+              <Link href="#">MENU</Link>
+            </div>
+          </div>
           <nav className="container py-4 flex items-center gap-6">
             <Link href="/" className="font-semibold">KAA</Link>
             <div className="flex gap-4 text-sm">
