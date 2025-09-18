@@ -1,5 +1,6 @@
 import courses from "@/data/courses.json";
 import Link from "next/link";
+import Image from "next/image";
 import type { Course } from "@/types/content";
 
 export const metadata = { title: "線上課程 - KAA" };
@@ -11,8 +12,11 @@ export default function CoursesIndex() {
     <div className="grid gap-6">
       <h1 className="text-2xl font-semibold">線上課程 KAAU</h1>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {dataset.map((course) => (
+        {dataset.map((course, index) => (
           <div key={course.id} className="border rounded-xl p-4">
+            <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-2 bg-neutral-100">
+              <Image src={`/images/course-${(index % 3) + 1}.svg`} alt="課程示意" fill className="object-cover" />
+            </div>
             <div className="font-medium">
               <Link className="hover:underline" href={`/courses/${course.id}/`}>{course.title}</Link>
             </div>

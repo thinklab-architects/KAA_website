@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { Megaphone, CalendarDays, BookOpen, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
 import news from "@/data/news.json";
@@ -39,7 +40,9 @@ export default function Page() {
           </div>
         </div>
         <div className="md:col-span-7">
-          <div className="hero-media rounded-2xl border aspect-[16/9] bg-white" />
+          <div className="relative rounded-2xl overflow-hidden border aspect-[16/9] bg-white">
+            <Image src="/images/hero.svg" alt="Hero" fill priority className="object-cover" />
+          </div>
         </div>
       </section>
 
@@ -60,15 +63,18 @@ export default function Page() {
           <button aria-label="scroll left" onClick={() => scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" })} className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronLeft className="h-4 w-4" /></button>
           <div ref={scrollRef} className="overflow-x-auto">
             <div className="flex gap-4 min-w-max pr-4">
-              {upcoming.map((event) => (
-                <div key={event.id} className="min-w-[260px] border rounded-xl p-4">
-                  <div className="font-medium">{event.title}</div>
-                  <div className="text-xs text-neutral-600 mt-1">{new Date(event.start).toLocaleString("zh-TW")} @ {event.venue}</div>
-                  {event.isCPD && event.credits ? (
-                    <div className="text-xs mt-1">學分：{event.credits.hours} 小時 {event.credits.type}</div>
-                  ) : null}
+            {upcoming.map((event, index) => (
+              <div key={event.id} className="min-w-[260px] border rounded-xl p-4">
+                <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-2 bg-neutral-100">
+                  <Image src={`/images/event-${(index % 3) + 1}.svg`} alt="活動示意" fill className="object-cover" />
                 </div>
-              ))}
+                <div className="font-medium">{event.title}</div>
+                <div className="text-xs text-neutral-600 mt-1">{new Date(event.start).toLocaleString("zh-TW")} @ {event.venue}</div>
+                {event.isCPD && event.credits ? (
+                  <div className="text-xs mt-1">學分：{event.credits.hours} 小時 {event.credits.type}</div>
+                ) : null}
+              </div>
+            ))}
             </div>
           </div>
           <button aria-label="scroll right" onClick={() => scrollRef.current?.scrollBy({ left: 320, behavior: "smooth" })} className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronRight className="h-4 w-4" /></button>
@@ -103,8 +109,11 @@ export default function Page() {
             <h2 className="text-xl font-semibold">線上課程 KAAU</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
-            {topCourses.map((course) => (
+            {topCourses.map((course, index) => (
               <div key={course.id} className="border rounded-xl p-4">
+                <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-2 bg-neutral-100">
+                  <Image src={`/images/course-${(index % 3) + 1}.svg`} alt="課程示意" fill className="object-cover" />
+                </div>
                 <div className="font-medium">{course.title}</div>
                 <div className="text-xs text-neutral-500">{course.format} ・ {course.credits?.hours} 小時 {course.credits?.type}</div>
               </div>
@@ -123,6 +132,9 @@ export default function Page() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {featuredWinners.map((winner, index) => (
             <div key={`${winner.title}-${index}`} className="border rounded-xl p-4">
+              <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-2 bg-neutral-100">
+                <Image src={`/images/award-${(index % 3) + 1}.svg`} alt="得獎示意" fill className="object-cover" />
+              </div>
               <div className="font-medium">{winner.title}</div>
               <div className="text-xs text-neutral-600">{winner.team}（{winner.category}）</div>
             </div>

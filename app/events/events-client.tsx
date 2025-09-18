@@ -1,5 +1,6 @@
 'use client';
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { EventItem } from "@/types/content";
 
@@ -38,8 +39,11 @@ export function EventsClient({ dataset }: { dataset: EventItem[] }) {
       </div>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {items.map((event) => (
+        {items.map((event, index) => (
           <div key={event.id} className="border rounded-xl p-4">
+            <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-2 bg-neutral-100">
+              <Image src={`/images/event-${(index % 3) + 1}.svg`} alt="活動示意" fill className="object-cover" />
+            </div>
             <div className="font-medium">
               <Link className="hover:underline" href={`/events/${event.id}/`}>{event.title}</Link>
             </div>
@@ -49,7 +53,7 @@ export function EventsClient({ dataset }: { dataset: EventItem[] }) {
           </div>
         ))}
       </div>
-      <div className="text-sm text-neutral-600">iCal：<a className="underline" href="/events/ical.ics">/events/ical.ics</a></div>
+      <div className="text-sm text-neutral-600">iCal：<Link className="underline" href="/events/ical.ics">/events/ical.ics</Link></div>
     </div>
   );
 }
