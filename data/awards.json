@@ -16,6 +16,13 @@
       { "title": "山城之光", "team": "CC 建築師事務所", "category": "建築" },
       { "title": "木色居所", "team": "DD 建築師事務所", "category": "室內建築" }
     ]
+  },
+  {
+    "year": 2023,
+    "name": "仁和賞",
+    "categories": ["建築"],
+    "winners": [
+      { "title": "向陽之庭", "team": "EE 建築師事務所", "category": "建築" }
+    ]
   }
 ]
-

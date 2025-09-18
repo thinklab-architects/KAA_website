@@ -8,6 +8,17 @@
       { "title": "導論", "duration": "15:20" },
       { "title": "設計重點", "duration": "34:12" }
     ]
+  },
+  {
+    "id": "course-002",
+    "title": "建築耐震與細部設計",
+    "format": "on-demand",
+    "credits": { "hours": 3, "type": "CPD" }
+  },
+  {
+    "id": "course-003",
+    "title": "無障礙設計實務",
+    "format": "live",
+    "credits": { "hours": 2, "type": "CPD" }
   }
 ]
-
