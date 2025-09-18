@@ -7,3 +7,4 @@ export const metadata = { title: "活動與學習 - KAA" };
 export default function Page() {
   return <EventsClient dataset={events as EventItem[]} />;
 }
+

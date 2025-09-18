@@ -54,7 +54,7 @@ export default function Page() {
       <section className="grid gap-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">近期活動</h2>
-          <div className="text-sm text-neutral-600">iCal：<a className="underline" href="/events/ical.ics">/events/ical.ics</a></div>
+          <div className="text-sm text-neutral-600">iCal：<Link className="underline" href="/events/ical.ics">/events/ical.ics</Link></div>
         </div>
         <div className="relative">
           <button aria-label="scroll left" onClick={() => scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" })} className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronLeft className="h-4 w-4" /></button>
