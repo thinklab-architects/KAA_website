@@ -6,17 +6,23 @@ import news from "@/data/news.json";
 import events from "@/data/events.json";
 import coursesData from "@/data/courses.json";
 import awards from "@/data/awards.json";
+import type { Article, EventItem, Course, AwardCycle, AwardWinner } from "@/types/content";
+
+const newsDataset = news as Article[];
+const eventDataset = events as EventItem[];
+const courseDataset = coursesData as Course[];
+const awardDataset = awards as AwardCycle[];
+const newsCategories = ["全部", ...Array.from(new Set(newsDataset.map((item) => item.category)))];
 
 export default function Page() {
   const [newsCat, setNewsCat] = useState<string>("全部");
-  const categories = useMemo(() => ["全部", ...Array.from(new Set((news as any[]).map((n:any)=>n.category)))], []);
   const latestNews = useMemo(() => {
-    const src = newsCat === "全部" ? (news as any[]) : (news as any[]).filter((n:any)=>n.category===newsCat);
+    const src = newsCat === "全部" ? newsDataset : newsDataset.filter((item) => item.category === newsCat);
     return src.slice(0, 4);
   }, [newsCat]);
-  const upcoming = (events as any[]).slice(0, 8);
-  const topCourses = (coursesData as any[]).slice(0, 3);
-  const featuredWinners = ((awards as any[])[0]?.winners ?? []).slice(0, 6);
+  const upcoming = eventDataset.slice(0, 8);
+  const topCourses = courseDataset.slice(0, 3);
+  const featuredWinners = (awardDataset[0]?.winners ?? []).slice(0, 6) as AwardWinner[];
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -26,7 +32,7 @@ export default function Page() {
         <div className="md:col-span-5">
           <div className="section-label mb-2">Resources</div>
           <h1 className="text-3xl md:text-5xl font-semibold leading-tight">與 KAA 一起建立專業知識</h1>
-          <p className="mt-4 text-neutral-600">匯集公告、法規、活動與學習資源，讓會員在職涯每個階段都能快速取得所需。</p>
+          <p className="mt-4 text-neutral-600">匯集公告、法規、活動與學習資源，協助會員在職涯各階段快速取得所需資訊。</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/resources/" className="k-cta-primary">前往資源中心</Link>
             <Link href="/membership/" className="k-cta-secondary">加入會員</Link>
@@ -51,19 +57,21 @@ export default function Page() {
           <div className="text-sm text-neutral-600">iCal：<a className="underline" href="/events/ical.ics">/events/ical.ics</a></div>
         </div>
         <div className="relative">
-          <button aria-label="scroll left" onClick={() => scrollRef.current?.scrollBy({left:-320,behavior:"smooth"})} className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronLeft className="h-4 w-4"/></button>
+          <button aria-label="scroll left" onClick={() => scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" })} className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronLeft className="h-4 w-4" /></button>
           <div ref={scrollRef} className="overflow-x-auto">
             <div className="flex gap-4 min-w-max pr-4">
-              {upcoming.map((e:any) => (
-                <div key={e.id} className="min-w-[260px] border rounded-xl p-4">
-                  <div className="font-medium">{e.title}</div>
-                  <div className="text-xs text-neutral-600 mt-1">{new Date(e.start).toLocaleString("zh-TW")} @ {e.venue}</div>
-                  {e.isCPD ? (<div className="text-xs mt-1">學分：{e.credits.hours} 小時 {e.credits.type}</div>) : null}
+              {upcoming.map((event) => (
+                <div key={event.id} className="min-w-[260px] border rounded-xl p-4">
+                  <div className="font-medium">{event.title}</div>
+                  <div className="text-xs text-neutral-600 mt-1">{new Date(event.start).toLocaleString("zh-TW")} @ {event.venue}</div>
+                  {event.isCPD && event.credits ? (
+                    <div className="text-xs mt-1">學分：{event.credits.hours} 小時 {event.credits.type}</div>
+                  ) : null}
                 </div>
               ))}
             </div>
           </div>
-          <button aria-label="scroll right" onClick={() => scrollRef.current?.scrollBy({left:320,behavior:"smooth"})} className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronRight className="h-4 w-4"/></button>
+          <button aria-label="scroll right" onClick={() => scrollRef.current?.scrollBy({ left: 320, behavior: "smooth" })} className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full border bg-white shadow"><ChevronRight className="h-4 w-4" /></button>
         </div>
       </section>
 
@@ -73,16 +81,16 @@ export default function Page() {
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold">最新公告</h2>
             <div className="flex gap-2 text-xs">
-              {categories.map((c) => (
-                <button key={c} onClick={()=>setNewsCat(c)} className={`px-2.5 py-1 rounded-full border ${newsCat===c?"bg-black text-white border-black":"bg-white hover:bg-neutral-50"}`}>{c}</button>
+              {newsCategories.map((category) => (
+                <button key={category} onClick={() => setNewsCat(category)} className={`px-2.5 py-1 rounded-full border ${newsCat === category ? "bg-black text-white border-black" : "bg-white hover:bg-neutral-50"}`}>{category}</button>
               ))}
             </div>
           </div>
           <ul className="space-y-3">
-            {latestNews.map((n:any) => (
-              <li key={n.id}>
-                <Link href={`/news/${n.id}/`} className="hover:underline">{n.title}</Link>
-                <div className="text-xs text-neutral-500">{n.published_at} - {n.category}</div>
+            {latestNews.map((article) => (
+              <li key={article.id}>
+                <Link href={`/news/${article.id}/`} className="hover:underline">{article.title}</Link>
+                <div className="text-xs text-neutral-500">{article.published_at} - {article.category}</div>
               </li>
             ))}
           </ul>
@@ -95,10 +103,10 @@ export default function Page() {
             <h2 className="text-xl font-semibold">線上課程 KAAU</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
-            {topCourses.map((c:any) => (
-              <div key={c.id} className="border rounded-xl p-4">
-                <div className="font-medium">{c.title}</div>
-                <div className="text-xs text-neutral-500">{c.format} ・ {c.credits.hours} 小時 {c.credits.type}</div>
+            {topCourses.map((course) => (
+              <div key={course.id} className="border rounded-xl p-4">
+                <div className="font-medium">{course.title}</div>
+                <div className="text-xs text-neutral-500">{course.format} ・ {course.credits?.hours} 小時 {course.credits?.type}</div>
               </div>
             ))}
           </div>
@@ -113,10 +121,10 @@ export default function Page() {
           <h2 className="text-xl font-semibold">得獎作品精選</h2>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {featuredWinners.map((w:any, i:number) => (
-            <div key={i} className="border rounded-xl p-4">
-              <div className="font-medium">{w.title}</div>
-              <div className="text-xs text-neutral-600">{w.team}（{w.category}）</div>
+          {featuredWinners.map((winner, index) => (
+            <div key={`${winner.title}-${index}`} className="border rounded-xl p-4">
+              <div className="font-medium">{winner.title}</div>
+              <div className="text-xs text-neutral-600">{winner.team}（{winner.category}）</div>
             </div>
           ))}
         </div>
@@ -127,8 +135,8 @@ export default function Page() {
       <section className="grid gap-3">
         <h2 className="text-xl font-semibold">合作與贊助</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="aspect-[3/1] rounded-lg border bg-neutral-50" />
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="aspect-[3/1] rounded-lg border bg-neutral-50" />
           ))}
         </div>
       </section>

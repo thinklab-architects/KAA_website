@@ -1,12 +1,15 @@
 import news from "@/data/news.json";
 import Link from "next/link";
+import type { Article } from "@/types/content";
+
+const dataset = news as Article[];
 
 export function generateStaticParams() {
-  return news.map((n: any) => ({ id: n.id }));
+  return dataset.map((n) => ({ id: n.id }));
 }
 
 export default function NewsDetail({ params }: { params: { id: string } }) {
-  const item = news.find((n) => n.id === params.id);
+  const item = dataset.find((n) => n.id === params.id);
   if (!item) return <div>找不到該則公告。</div>;
   return (
     <article className="prose max-w-none">
@@ -17,10 +20,10 @@ export default function NewsDetail({ params }: { params: { id: string } }) {
         <div className="mt-4">
           <h3>附件</h3>
           <ul>
-            {item.attachments.map((a: any) => (
-              <li key={a.url}>
-                <a className="underline" href={a.url}>{a.name}</a>
-                {a.version ? <span className="ml-2 text-xs text-neutral-500">{a.version}</span> : null}
+            {item.attachments.map((attachment) => (
+              <li key={attachment.url}>
+                <a className="underline" href={attachment.url}>{attachment.name}</a>
+                {attachment.version ? <span className="ml-2 text-xs text-neutral-500">{attachment.version}</span> : null}
               </li>
             ))}
           </ul>

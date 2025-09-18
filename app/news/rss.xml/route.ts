@@ -1,18 +1,22 @@
 import news from "@/data/news.json";
+import type { Article } from "@/types/content";
 
 const SITE = "https://thinklab-architects.github.io/KAA_website";
+const dataset = news as Article[];
 
 export async function GET() {
-  const items = news
-    .map((n) => `
+  const items = dataset
+    .map(
+      (item) => `
       <item>
-        <title><![CDATA[${n.title}]]></title>
-        <link>${SITE}/news/${n.id}/</link>
-        <guid isPermaLink="false">${n.id}</guid>
-        <pubDate>${new Date(n.published_at).toUTCString()}</pubDate>
-        ${n.summary ? `<description><![CDATA[${n.summary}]]></description>` : ""}
+        <title><![CDATA[${item.title}]]></title>
+        <link>${SITE}/news/${item.id}/</link>
+        <guid isPermaLink="false">${item.id}</guid>
+        <pubDate>${new Date(item.published_at).toUTCString()}</pubDate>
+        ${item.summary ? `<description><![CDATA[${item.summary}]]></description>` : ""}
       </item>
-    `)
+    `
+    )
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -29,4 +33,3 @@ export async function GET() {
     headers: { "Content-Type": "application/rss+xml; charset=utf-8" },
   });
 }
-

@@ -71,3 +71,8 @@ export interface AwardCycle {
   winners?: AwardWinner[];
 }
 
+export interface ResourceTopic {
+  slug: string;
+  title: string;
+  description?: string;
+}

@@ -1,4 +1,7 @@
 import events from "@/data/events.json";
+import type { EventItem } from "@/types/content";
+
+const dataset = events as EventItem[];
 
 function toICSDate(dt: string) {
   const d = new Date(dt);
@@ -16,12 +19,13 @@ function toICSDate(dt: string) {
 }
 
 export async function GET() {
-  const vevents = events
-    .map((e) => `BEGIN:VEVENT\nUID:${e.id}@kaa\nSUMMARY:${e.title}\nDTSTART:${toICSDate(e.start)}\n${e.end ? `DTEND:${toICSDate(e.end)}\n` : ""}LOCATION:${e.venue ?? ""}\nEND:VEVENT`)
+  const vevents = dataset
+    .map(
+      (event) => `BEGIN:VEVENT\nUID:${event.id}@kaa\nSUMMARY:${event.title}\nDTSTART:${toICSDate(event.start)}\n${event.end ? `DTEND:${toICSDate(event.end)}\n` : ""}LOCATION:${event.venue ?? ""}\nEND:VEVENT`
+    )
     .join("\n");
 
   const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//KAA//Events//TW\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\n${vevents}\nEND:VCALENDAR`;
 
   return new Response(ics, { headers: { "Content-Type": "text/calendar; charset=utf-8" } });
 }
-
