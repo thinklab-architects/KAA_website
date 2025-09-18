@@ -1,0 +1,41 @@
+title: KAA Website
+description: A professional website built with GitHub Pages, optimized for VS Code GPT Codex editing
+baseurl: ""
+url: "https://thinklab-architects.github.io"
+
+# GitHub Pages settings
+remote_theme: jekyll/minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Site configuration
+lang: zh-TW
+timezone: Asia/Taipei
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Build settings
+exclude:
+  - README.md
+  - LICENSE
+  - .gitignore
+  - .vscode/
+  - node_modules/
+  - package*.json
+
+# Collections (for future use)
+collections_dir: collections
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"

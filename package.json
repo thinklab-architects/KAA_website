@@ -1,0 +1,38 @@
+{
+  "name": "kaa-website",
+  "version": "1.0.0",
+  "description": "KAA professional website built with GitHub Pages, optimized for VS Code GPT Codex editing",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server .",
+    "dev": "npx live-server . --port=5500 --open",
+    "format": "npx prettier --write .",
+    "lint-css": "npx stylelint **/*.css",
+    "validate-html": "npx html-validate **/*.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thinklab-architects/KAA_website.git"
+  },
+  "keywords": [
+    "github-pages",
+    "website",
+    "jekyll",
+    "vscode",
+    "gpt-codex",
+    "copilot"
+  ],
+  "author": "thinklab architects",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "live-server": "^1.2.2",
+    "stylelint": "^15.0.0",
+    "html-validate": "^8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

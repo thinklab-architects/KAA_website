@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+        "github.copilot",
+        "github.copilot-chat",
+        "ritwickdey.liveserver",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-typescript-next",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.path-intellisense",
+        "ms-vscode.sublime-keybindings",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one"
+    ]
+}
