@@ -1,4 +1,4 @@
-import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   if (process.env.NODE_ENV === 'production') {
@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   const pass = body?.password ?? '';
   const expected = process.env.ADMIN_PASSWORD || 'kaa-dev';
   if (pass !== expected) return new Response('Unauthorized', { status: 401 });
-  cookies().set('kaa_admin', '1', { httpOnly: true, sameSite: 'lax' });
-  return Response.json({ ok: true });
+  const res = NextResponse.json({ ok: true });
+  res.cookies.set('kaa_admin', '1', { httpOnly: true, sameSite: 'lax' });
+  return res;
 }
-
